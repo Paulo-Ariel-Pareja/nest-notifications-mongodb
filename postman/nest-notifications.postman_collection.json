@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "7ce37205-b7b3-4206-8630-d4cb97535b23",
+		"name": "nest-notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear owner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\": \"paulo\",\r\n    \"messages\": [\r\n        {\"message\": \"mensaje 1\"},\r\n        {\"message\": \"mensaje 2\"},\r\n        {\"message\": \"mensaje 3\"}\r\n    ]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3500/owner",
+					"host": [
+						"localhost"
+					],
+					"port": "3500",
+					"path": [
+						"owner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener todos los mensajes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3500/owner/paulo",
+					"host": [
+						"localhost"
+					],
+					"port": "3500",
+					"path": [
+						"owner",
+						"paulo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener mensaje especifico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3500/owner/paulo/60d556638886c20e0c929c94",
+					"host": [
+						"localhost"
+					],
+					"port": "3500",
+					"path": [
+						"owner",
+						"paulo",
+						"60d556638886c20e0c929c94"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "quitar mensaje",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3500/owner/paulo/60d556638886c20e0c929c922",
+					"host": [
+						"localhost"
+					],
+					"port": "3500",
+					"path": [
+						"owner",
+						"paulo",
+						"60d556638886c20e0c929c922"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
