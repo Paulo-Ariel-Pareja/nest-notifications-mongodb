@@ -16,7 +16,6 @@ const buildUri = (returnOption: 'string' | 'object' = 'string') => {
     const userInfo = !!uri.user && !!uri.pass ? `${uri.user}:${uri.pass}@` : '';
     return `${uri.protocol}://${userInfo}${uri.host}:${uri.port}/${uri.db}`;
   }
-  console.log(uri);
   return uri;
 };
 

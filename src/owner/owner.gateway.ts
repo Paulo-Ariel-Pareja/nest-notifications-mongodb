@@ -32,14 +32,12 @@ export class OwnerGateway implements OnGatewayInit, OnGatewayConnection, OnGatew
 
   @SubscribeMessage('joinRoom')
   public joinRoom(client: Socket, uuid: string): void {
-    console.log(`se unio: ${uuid}`);
     client.join(uuid);
     client.emit('joinedRoom', uuid);
   }
 
   @SubscribeMessage('leaveRoom')
   public leaveRoom(client: Socket, room: string): void {
-    console.log(`dejo room: ${room}`);
     client.leave(room);
     client.emit('leftRoomServer', room);
   }
