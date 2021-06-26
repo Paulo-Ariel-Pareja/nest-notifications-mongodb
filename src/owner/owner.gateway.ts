@@ -21,13 +21,12 @@ export class OwnerGateway implements OnGatewayInit, OnGatewayConnection, OnGatew
 
   constructor(
     private service: OwnerService
-  ) {
-    console.log('inicializacion constructor');
-  }
+  ) {}
 
   @SubscribeMessage('msgToServer')
   public async handleMessage(client: Socket, payload: any): Promise<WsResponse<any>> {
     const owner = await this.service.create(payload);
+    client.broadcast.to(owner.uuid).emit('msgToClient', owner)
     return client.emit('msgToClient', owner);
   };
 

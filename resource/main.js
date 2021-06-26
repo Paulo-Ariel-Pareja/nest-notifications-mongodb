@@ -1,10 +1,9 @@
 const app = new Vue({
   el: '#app',
   data: {
-    title: 'NestJS Chat Real Time',
-    name: '',
+    title: 'Emitir mensajes a usuarios',
     text: '',
-    selected: 'paulo',
+    selected: 'usuario1',
     messages: [],
     socket: null,
     activeRoom: '',
@@ -16,11 +15,11 @@ const app = new Vue({
       roomD: false,
     },
     listRooms: [
-      "paulo",
-      "ariel",
-      "roomB",
-      "roomC",
-      "roomD"
+      "usuario1",
+      "usuario2",
+      "usuario3",
+      "usuario4",
+      "usuario5"
     ]
   },
   methods: {
@@ -46,11 +45,9 @@ const app = new Vue({
         mensajes.push(element.message)
       });
       this.messages= mensajes;
-      console.log('*******>');
-      console.log(this.messages);
     },
     validateInput() {
-      return this.name.length > 0 && this.text.length > 0
+      return this.text.length > 0
     },
     check() {
       if (this.isMemberOfActiveRoom) {

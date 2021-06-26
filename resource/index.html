@@ -24,14 +24,11 @@
                     <option  v-for="room of listRooms" :value="room">{{ room }}</option>
                 </select>
                 <br>
-                <label for="username">Your Name:</label>
-                <input type="text" v-model="name" id="username" class="form-control" placeholder="Enter name...">
-                <br>
-                <label for="messages">Chat:</label>
+                <label for="messages">Mensajes:</label>
                 <div class="card">
                     <div id="messages" class="card-block">
                         <ul>
-                            <li v-for="message of messages">{{ message.name }}: {{ message.text }}</li>
+                            <li v-for="message of messages">{{ message }}</li>
                         </ul>
                     </div>
                 </div>
