@@ -14,9 +14,13 @@ import dbConfig from './config/db.config';
       isGlobal: true,
       load: [appConfig, dbConfig]
     }),
-    MongooseModule.forRoot('mongodb://localhost/notifications',
-      { useNewUrlParser: true }
-    ),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('dbConfig.uri'),
+      }),
+      inject: [ConfigService],
+    }),
     OwnerModule
   ],
   controllers: [AppController],
