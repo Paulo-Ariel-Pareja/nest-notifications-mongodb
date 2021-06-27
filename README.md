@@ -1,3 +1,21 @@
+# How to use
+
+<p align="center">
+  Setup your .env file (use .env.example included if you want) or not setup and user all values by default.
+</p>
+
+## Rest API Documentation
+
+<p align="center">
+  Check Swagger for documentation on  <a href="http://localhost:3000/swagger/" target="blank">HERE</a> or on you custom port http://localhost:YOU_PORT/swagger/
+</p>
+
+## Use sockets
+<p align="center">
+  Navegate with your browser to http://localhost:3500/ and send message with sockets. Thats messages works like chat for only one user. That idea is for send message for realtime like push notification (you generate message for send to you customer ).
+</p>
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>

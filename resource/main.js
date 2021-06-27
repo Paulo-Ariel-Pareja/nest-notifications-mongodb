@@ -1,7 +1,7 @@
 const app = new Vue({
   el: '#app',
   data: {
-    title: 'Emitir mensajes a usuarios',
+    title: 'Emitir notificaciones "push"',
     text: '',
     selected: 'usuario1',
     messages: [],
