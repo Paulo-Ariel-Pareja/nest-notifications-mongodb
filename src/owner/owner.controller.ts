@@ -6,11 +6,10 @@ import {
     Delete,
     Param,
     Res,
-    HttpStatus,
     NotFoundException,
     BadRequestException,
 } from '@nestjs/common';
-import { OwnerDto } from 'src/dto/owner.dto';
+import { OwnerDto } from '../dto/owner.dto';
 import { OwnerService } from './owner.service';
 
 @Controller('owner')
@@ -20,57 +19,57 @@ export class OwnerController {
     ) { }
 
     @Post('/')
-    async create(@Res() res, @Body() dto: OwnerDto) {
+    async create(@Body() dto: OwnerDto) {
         try {
             const owner = await this.service.create(dto);
-            return res.status(HttpStatus.OK).json({
+            return {
                 status: 'ok',
                 owner
-            });
+            };
         } catch (error) {
             throw new BadRequestException(error.message);
         }
     }
 
     @Get('/:uuid')
-    async getMessages(@Param('uuid') uuid,@Res() res) {
+    async getMessages(@Param('uuid') uuid) {
         try {
             const owner = await this.service.getMessagesActive(uuid);
-            return res.status(HttpStatus.OK).json({
+            return {
                 status: 'ok',
                 qty: owner.messages.length,
                 owner
-            })
+            }
         } catch (error) {
             throw new BadRequestException(error.message);
         }
     }
 
     @Get('/:uuid/:id')
-    async getMessage(@Param('uuid') uuid, @Param('id') id, @Res() res) {
+    async getMessage(@Param('uuid') uuid, @Param('id') id) {
         try {
             const result = await this.service.getOneMessage(uuid, id);
             if (result.length === 0) {
                 throw new NotFoundException();
             }
-            return res.status(HttpStatus.OK).json({
+            return {
                 status: 'ok',
                 message: result[0].messages
-            })
+            }
         } catch (error) {
             throw new BadRequestException(error.message);
         }
     }
 
     @Delete('/:uuid/:id')
-    async readMessage(@Param('uuid') uuid, @Param('id') id, @Res() res) {
+    async readMessage(@Param('uuid') uuid, @Param('id') id) {
         try {
             const owner = await this.service.removeMessage(uuid, id);
-            return res.status(HttpStatus.OK).json({
+            return {
                 status: 'ok',
                 qty: owner.messages.length,
                 owner
-            })
+            };
         } catch (error) {
             throw new BadRequestException(error.message);
         }
