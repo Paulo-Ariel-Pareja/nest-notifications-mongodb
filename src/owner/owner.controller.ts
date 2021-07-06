@@ -5,7 +5,6 @@ import {
     Post,
     Delete,
     Param,
-    Res,
     NotFoundException,
     BadRequestException,
 } from '@nestjs/common';
@@ -62,7 +61,7 @@ export class OwnerController {
     }
 
     @Delete('/:uuid/:id')
-    async readMessage(@Param('uuid') uuid, @Param('id') id) {
+    async deleteMessage(@Param('uuid') uuid, @Param('id') id) {
         try {
             const owner = await this.service.removeMessage(uuid, id);
             return {
