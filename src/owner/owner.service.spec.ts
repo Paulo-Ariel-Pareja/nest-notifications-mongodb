@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OwnerService } from './owner.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { Owner } from '../models/owner.models';
+import { OwnerDto } from 'src/dto/owner.dto';
 
 
 describe('OwnerService', () => {
@@ -70,6 +70,20 @@ describe('OwnerService', () => {
   });
 
   // to do: test create method for service
+  // option 1
+/*   it('should return new owner', () => {
+    const body = {
+      "uuid": "sarasa",
+      "messages": [
+        { "message": "nuevo2" }
+      ]
+    };
+    expect(service.create(body as OwnerDto)).resolves.toEqual(deleteEvent).catch(err => {
+      console.log(err);
+    });
+  }); */
+
+  // option 2
   /* 
   it('should return new owner', () => {
     const mockResult = {
@@ -93,7 +107,7 @@ describe('OwnerService', () => {
     };
     jest.spyOn(Owner.prototype, 'save')
       .mockImplementation(async () => mockResult as Promise<Owner>);
-    expect(service.create(body as OwnerDto)).resolves.toEqual(createEvent).catch(err => {
+    expect(service.create(body as OwnerDto)).resolves.toEqual(deleteEvent).catch(err => {
       console.log(err);
     });
   }); */
