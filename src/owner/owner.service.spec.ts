@@ -1,8 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OwnerService } from './owner.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { OwnerDto } from 'src/dto/owner.dto';
-
 
 describe('OwnerService', () => {
   let service: OwnerService;

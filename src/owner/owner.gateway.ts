@@ -31,9 +31,12 @@ export class OwnerGateway implements OnGatewayInit, OnGatewayConnection, OnGatew
   };
 
   @SubscribeMessage('joinRoom')
-  public joinRoom(client: Socket, uuid: string): void {
+  public async joinRoom(client: Socket, uuid: string): Promise<WsResponse<any>> {
     client.join(uuid);
     client.emit('joinedRoom', uuid);
+    const owner = await this.service.getMessagesActive(uuid);
+    client.broadcast.to(owner.uuid).emit('msgToClient', owner)
+    return client.emit('msgToClient', owner);
   }
 
   @SubscribeMessage('leaveRoom')
