@@ -30,21 +30,21 @@ const app = new Vue({
     },
 
     sendMessage() {
-      if(this.validateInput()) {
+      if (this.validateInput()) {
         const message = {
           uuid: this.activeRoom,
-          messages: [{message: this.text}],
+          messages: [{ message: this.text }],
         };
         this.socket.emit('msgToServer', message);
         this.text = '';
       }
     },
     receivedMessage(message) {
-      const mensajes=[];
-       message.messages.forEach(element => {
+      const mensajes = [];
+      message.messages.forEach(element => {
         mensajes.push(element.message)
       });
-      this.messages= mensajes;
+      this.messages = mensajes;
     },
     validateInput() {
       return this.text.length > 0
@@ -70,7 +70,11 @@ const app = new Vue({
     this.activeRoom = this.selected;
     this.socket = io('http://localhost:3500/realtime');
     this.socket.on('msgToClient', (message) => {
-      this.receivedMessage(message)
+      if (message) {
+        this.receivedMessage(message)
+      } else {
+        this.messages = []
+      }
     });
 
     this.socket.on('connect', () => {
