@@ -9,6 +9,29 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  const whitelist = [
+    'http://localhost:3500',
+    'http://localhost:3501'
+  ];
+  const methods = "GET,PUT,POST,DELETE,UPDATE,OPTIONS,HEAD,PATCH";
+  const allowedHeaders = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, Authorization, Origin"
+
+  app.enableCors({
+    origin: (origin, callback) => {
+      if (whitelist.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Origin not allowed by CORS'));
+      }
+    },
+    allowedHeaders,
+    methods,
+    credentials: true,
+    preflightContinue: true,
+    optionsSuccessStatus: 204
+  });
+
   const options = new DocumentBuilder()
     .setTitle('Task example')
     .setDescription('The task API description')

@@ -68,7 +68,34 @@ const app = new Vue({
   },
   created() {
     this.activeRoom = this.selected;
-    this.socket = io('http://localhost:3500/realtime');
+    this.socket = io('http://localhost:3500/realtime', {
+      transportOptions: {
+        withCredentials: true,
+        polling: {
+          extraHeaders: {
+            Authorization: this.activeRoom,
+            
+            methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+            withCredentials: true,
+            cors: {
+              
+              methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+              withCredentials: true
+            }
+          }
+        },
+        cors: {
+          
+          methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+          withCredentials: true
+        }
+      },
+      cors: {
+        
+        methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+        withCredentials: true,
+      }
+    });
     this.socket.on('msgToClient', (message) => {
       if (message) {
         this.receivedMessage(message)
